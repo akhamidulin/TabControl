@@ -1,0 +1,346 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище El_AbayModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tmp_esf_Invoice">
+          <Key>
+            <PropertyRef Name="InvoiceNumber" />
+            <PropertyRef Name="Workmonth" />
+          </Key>
+          <Property Name="Id" Type="int" />
+          <Property Name="InvoiceNumber" Type="int" Nullable="false" />
+          <Property Name="Workmonth" Type="smalldatetime" Nullable="false" />
+          <Property Name="date" Type="nvarchar" MaxLength="10" />
+          <Property Name="invoiceType" Type="nvarchar" MaxLength="20" />
+          <Property Name="num" Type="int" />
+          <Property Name="operatorFullname" Type="nvarchar" MaxLength="100" />
+          <Property Name="relatedInvoiceDate" Type="nvarchar" MaxLength="10" />
+          <Property Name="relatedInvoiceNum" Type="nvarchar" MaxLength="20" />
+          <Property Name="relatedInvoiceRegistrationNumber" Type="nvarchar" MaxLength="34" />
+          <Property Name="signature" Type="nvarchar" MaxLength="1" />
+          <Property Name="signatureType" Type="nvarchar" MaxLength="20" />
+          <Property Name="consignee_address" Type="nvarchar" MaxLength="500" />
+          <Property Name="consignee_name" Type="nvarchar" MaxLength="500" />
+          <Property Name="consignee_tin" Type="nvarchar" MaxLength="20" />
+          <Property Name="consignor_address" Type="nvarchar" MaxLength="500" />
+          <Property Name="consignor_name" Type="nvarchar" MaxLength="500" />
+          <Property Name="consignor_tin" Type="nvarchar" MaxLength="20" />
+          <Property Name="customer_address" Type="nvarchar" MaxLength="500" />
+          <Property Name="customer_name" Type="nvarchar" MaxLength="500" />
+          <Property Name="customer_tin" Type="nvarchar" MaxLength="20" />
+          <Property Name="customer_status" Type="nvarchar" MaxLength="20" />
+          <Property Name="contractDate" Type="nvarchar" MaxLength="10" />
+          <Property Name="contractNum" Type="nvarchar" MaxLength="20" />
+          <Property Name="destination" Type="nvarchar" MaxLength="200" />
+          <Property Name="exerciseWay" Type="nvarchar" MaxLength="50" />
+          <Property Name="term" Type="nvarchar" MaxLength="50" />
+          <Property Name="totalExciseAmount" Type="nvarchar" MaxLength="20" />
+          <Property Name="totalNdsAmount" Type="nvarchar" MaxLength="20" />
+          <Property Name="totalPriceWithTax" Type="nvarchar" MaxLength="20" />
+          <Property Name="totalPriceWithoutTax" Type="nvarchar" MaxLength="20" />
+          <Property Name="totalTurnoverSize" Type="nvarchar" MaxLength="20" />
+          <Property Name="publicOffice_bik" Type="nvarchar" MaxLength="20" />
+          <Property Name="publicOffice_iik" Type="nvarchar" MaxLength="20" />
+          <Property Name="publicOffice_payPurpose" Type="nvarchar" MaxLength="20" />
+          <Property Name="publicOffice_productCode" Type="nvarchar" MaxLength="20" />
+          <Property Name="SellerId" Type="tinyint" />
+          <Property Name="deliveryDocDate" Type="nvarchar" MaxLength="10" />
+          <Property Name="deliveryDocNum" Type="nvarchar" MaxLength="10" />
+          <Property Name="turnoverDate" Type="nvarchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="tmp_esf_ProductSet">
+          <Key>
+            <PropertyRef Name="NewID" />
+          </Key>
+          <Property Name="NewID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="InvoiceNumber" Type="int" Nullable="false" />
+          <Property Name="currencyCode" Type="nvarchar" MaxLength="3" />
+          <Property Name="description" Type="nvarchar" MaxLength="200" />
+          <Property Name="ndsAmount" Type="nvarchar" MaxLength="20" />
+          <Property Name="ndsRate" Type="nvarchar" MaxLength="5" />
+          <Property Name="priceWithTax" Type="nvarchar" MaxLength="20" />
+          <Property Name="priceWithoutTax" Type="nvarchar" MaxLength="20" />
+          <Property Name="quantity" Type="nvarchar" MaxLength="20" />
+          <Property Name="turnoverSize" Type="nvarchar" MaxLength="20" />
+          <Property Name="unitCode" Type="nvarchar" MaxLength="20" />
+          <Property Name="unitNomenclature" Type="nvarchar" MaxLength="10" />
+          <Property Name="unitPrice" Type="nvarchar" MaxLength="20" />
+          <Property Name="truOriginCode" Type="nvarchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="tmp_esf_Seller">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="WorkMonth" />
+          </Key>
+          <Property Name="Id" Type="tinyint" Nullable="false" />
+          <Property Name="WorkMonth" Type="smalldatetime" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="500" />
+          <Property Name="address" Type="nvarchar" MaxLength="500" />
+          <Property Name="bank" Type="nvarchar" MaxLength="500" />
+          <Property Name="bik" Type="nvarchar" MaxLength="10" />
+          <Property Name="certificateNum" Type="nvarchar" MaxLength="10" />
+          <Property Name="certificateSeries" Type="nvarchar" MaxLength="10" />
+          <Property Name="iik" Type="nvarchar" MaxLength="20" />
+          <Property Name="kbe" Type="nvarchar" MaxLength="5" />
+          <Property Name="tin" Type="nvarchar" MaxLength="20" />
+          <Property Name="Director" Type="nvarchar" MaxLength="100" />
+          <Property Name="Accountant" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <Association Name="FK_tmp_esf_Invoice">
+          <End Role="tmp_esf_Seller" Type="Self.tmp_esf_Seller" Multiplicity="0..1" />
+          <End Role="tmp_esf_Invoice" Type="Self.tmp_esf_Invoice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tmp_esf_Seller">
+              <PropertyRef Name="Id" />
+              <PropertyRef Name="WorkMonth" />
+            </Principal>
+            <Dependent Role="tmp_esf_Invoice">
+              <PropertyRef Name="SellerId" />
+              <PropertyRef Name="Workmonth" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище El_AbayModelContainer">
+          <EntitySet Name="tmp_esf_Invoice" EntityType="Self.tmp_esf_Invoice" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tmp_esf_ProductSet" EntityType="Self.tmp_esf_ProductSet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tmp_esf_Seller" EntityType="Self.tmp_esf_Seller" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_tmp_esf_Invoice" Association="Self.FK_tmp_esf_Invoice">
+            <End Role="tmp_esf_Seller" EntitySet="tmp_esf_Seller" />
+            <End Role="tmp_esf_Invoice" EntitySet="tmp_esf_Invoice" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="El_AbayModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="tmp_esf_Invoice">
+          <Key>
+            <PropertyRef Name="InvoiceNumber" />
+            <PropertyRef Name="Workmonth" />
+          </Key>
+          <Property Name="Id" Type="Int32" />
+          <Property Name="InvoiceNumber" Type="Int32" Nullable="false" />
+          <Property Name="Workmonth" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="date" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="invoiceType" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="num" Type="Int32" />
+          <Property Name="operatorFullname" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="relatedInvoiceDate" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="relatedInvoiceNum" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="relatedInvoiceRegistrationNumber" Type="String" MaxLength="34" FixedLength="false" Unicode="true" />
+          <Property Name="signature" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="signatureType" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="consignee_address" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="consignee_name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="consignee_tin" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="consignor_address" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="consignor_name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="consignor_tin" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="customer_address" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="customer_name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="customer_tin" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="customer_status" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="contractDate" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="contractNum" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="destination" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="exerciseWay" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="term" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="totalExciseAmount" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="totalNdsAmount" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="totalPriceWithTax" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="totalPriceWithoutTax" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="totalTurnoverSize" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="publicOffice_bik" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="publicOffice_iik" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="publicOffice_payPurpose" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="publicOffice_productCode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="SellerId" Type="Byte" />
+          <Property Name="deliveryDocDate" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="deliveryDocNum" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="turnoverDate" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tmp_esf_Seller" Relationship="Self.FK_tmp_esf_Invoice" FromRole="tmp_esf_Invoice" ToRole="tmp_esf_Seller" />
+        </EntityType>
+        <EntityType Name="tmp_esf_ProductSet">
+          <Key>
+            <PropertyRef Name="NewID" />
+          </Key>
+          <Property Name="NewID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="InvoiceNumber" Type="Int32" Nullable="false" />
+          <Property Name="currencyCode" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="ndsAmount" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="ndsRate" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="priceWithTax" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="priceWithoutTax" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="quantity" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="turnoverSize" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="unitCode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="unitNomenclature" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="unitPrice" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="truOriginCode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tmp_esf_Seller">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="WorkMonth" />
+          </Key>
+          <Property Name="Id" Type="Byte" Nullable="false" />
+          <Property Name="WorkMonth" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="address" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="bank" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="bik" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="certificateNum" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="certificateSeries" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="iik" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="kbe" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="tin" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Director" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Accountant" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tmp_esf_Invoice" Relationship="Self.FK_tmp_esf_Invoice" FromRole="tmp_esf_Seller" ToRole="tmp_esf_Invoice" />
+        </EntityType>
+        <Association Name="FK_tmp_esf_Invoice">
+          <End Role="tmp_esf_Seller" Type="Self.tmp_esf_Seller" Multiplicity="0..1" />
+          <End Role="tmp_esf_Invoice" Type="Self.tmp_esf_Invoice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tmp_esf_Seller">
+              <PropertyRef Name="Id" />
+              <PropertyRef Name="WorkMonth" />
+            </Principal>
+            <Dependent Role="tmp_esf_Invoice">
+              <PropertyRef Name="SellerId" />
+              <PropertyRef Name="Workmonth" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="El_AbayEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tmp_esf_Invoice" EntityType="Self.tmp_esf_Invoice" />
+          <EntitySet Name="tmp_esf_ProductSet" EntityType="Self.tmp_esf_ProductSet" />
+          <EntitySet Name="tmp_esf_Seller" EntityType="Self.tmp_esf_Seller" />
+          <AssociationSet Name="FK_tmp_esf_Invoice" Association="Self.FK_tmp_esf_Invoice">
+            <End Role="tmp_esf_Seller" EntitySet="tmp_esf_Seller" />
+            <End Role="tmp_esf_Invoice" EntitySet="tmp_esf_Invoice" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище El_AbayModelContainer" CdmEntityContainer="El_AbayEntities">
+          <EntitySetMapping Name="tmp_esf_Invoice">
+            <EntityTypeMapping TypeName="El_AbayModel.tmp_esf_Invoice">
+              <MappingFragment StoreEntitySet="tmp_esf_Invoice">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="InvoiceNumber" ColumnName="InvoiceNumber" />
+                <ScalarProperty Name="Workmonth" ColumnName="Workmonth" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="invoiceType" ColumnName="invoiceType" />
+                <ScalarProperty Name="num" ColumnName="num" />
+                <ScalarProperty Name="operatorFullname" ColumnName="operatorFullname" />
+                <ScalarProperty Name="relatedInvoiceDate" ColumnName="relatedInvoiceDate" />
+                <ScalarProperty Name="relatedInvoiceNum" ColumnName="relatedInvoiceNum" />
+                <ScalarProperty Name="relatedInvoiceRegistrationNumber" ColumnName="relatedInvoiceRegistrationNumber" />
+                <ScalarProperty Name="signature" ColumnName="signature" />
+                <ScalarProperty Name="signatureType" ColumnName="signatureType" />
+                <ScalarProperty Name="consignee_address" ColumnName="consignee_address" />
+                <ScalarProperty Name="consignee_name" ColumnName="consignee_name" />
+                <ScalarProperty Name="consignee_tin" ColumnName="consignee_tin" />
+                <ScalarProperty Name="consignor_address" ColumnName="consignor_address" />
+                <ScalarProperty Name="consignor_name" ColumnName="consignor_name" />
+                <ScalarProperty Name="consignor_tin" ColumnName="consignor_tin" />
+                <ScalarProperty Name="customer_address" ColumnName="customer_address" />
+                <ScalarProperty Name="customer_name" ColumnName="customer_name" />
+                <ScalarProperty Name="customer_tin" ColumnName="customer_tin" />
+                <ScalarProperty Name="customer_status" ColumnName="customer_status" />
+                <ScalarProperty Name="contractDate" ColumnName="contractDate" />
+                <ScalarProperty Name="contractNum" ColumnName="contractNum" />
+                <ScalarProperty Name="destination" ColumnName="destination" />
+                <ScalarProperty Name="exerciseWay" ColumnName="exerciseWay" />
+                <ScalarProperty Name="term" ColumnName="term" />
+                <ScalarProperty Name="totalExciseAmount" ColumnName="totalExciseAmount" />
+                <ScalarProperty Name="totalNdsAmount" ColumnName="totalNdsAmount" />
+                <ScalarProperty Name="totalPriceWithTax" ColumnName="totalPriceWithTax" />
+                <ScalarProperty Name="totalPriceWithoutTax" ColumnName="totalPriceWithoutTax" />
+                <ScalarProperty Name="totalTurnoverSize" ColumnName="totalTurnoverSize" />
+                <ScalarProperty Name="publicOffice_bik" ColumnName="publicOffice_bik" />
+                <ScalarProperty Name="publicOffice_iik" ColumnName="publicOffice_iik" />
+                <ScalarProperty Name="publicOffice_payPurpose" ColumnName="publicOffice_payPurpose" />
+                <ScalarProperty Name="publicOffice_productCode" ColumnName="publicOffice_productCode" />
+                <ScalarProperty Name="SellerId" ColumnName="SellerId" />
+                <ScalarProperty Name="deliveryDocDate" ColumnName="deliveryDocDate" />
+                <ScalarProperty Name="deliveryDocNum" ColumnName="deliveryDocNum" />
+                <ScalarProperty Name="turnoverDate" ColumnName="turnoverDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tmp_esf_ProductSet">
+            <EntityTypeMapping TypeName="El_AbayModel.tmp_esf_ProductSet">
+              <MappingFragment StoreEntitySet="tmp_esf_ProductSet">
+                <ScalarProperty Name="NewID" ColumnName="NewID" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="InvoiceNumber" ColumnName="InvoiceNumber" />
+                <ScalarProperty Name="currencyCode" ColumnName="currencyCode" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="ndsAmount" ColumnName="ndsAmount" />
+                <ScalarProperty Name="ndsRate" ColumnName="ndsRate" />
+                <ScalarProperty Name="priceWithTax" ColumnName="priceWithTax" />
+                <ScalarProperty Name="priceWithoutTax" ColumnName="priceWithoutTax" />
+                <ScalarProperty Name="quantity" ColumnName="quantity" />
+                <ScalarProperty Name="turnoverSize" ColumnName="turnoverSize" />
+                <ScalarProperty Name="unitCode" ColumnName="unitCode" />
+                <ScalarProperty Name="unitNomenclature" ColumnName="unitNomenclature" />
+                <ScalarProperty Name="unitPrice" ColumnName="unitPrice" />
+                <ScalarProperty Name="truOriginCode" ColumnName="truOriginCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tmp_esf_Seller">
+            <EntityTypeMapping TypeName="El_AbayModel.tmp_esf_Seller">
+              <MappingFragment StoreEntitySet="tmp_esf_Seller">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="WorkMonth" ColumnName="WorkMonth" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="bank" ColumnName="bank" />
+                <ScalarProperty Name="bik" ColumnName="bik" />
+                <ScalarProperty Name="certificateNum" ColumnName="certificateNum" />
+                <ScalarProperty Name="certificateSeries" ColumnName="certificateSeries" />
+                <ScalarProperty Name="iik" ColumnName="iik" />
+                <ScalarProperty Name="kbe" ColumnName="kbe" />
+                <ScalarProperty Name="tin" ColumnName="tin" />
+                <ScalarProperty Name="Director" ColumnName="Director" />
+                <ScalarProperty Name="Accountant" ColumnName="Accountant" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
